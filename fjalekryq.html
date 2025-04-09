@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fjalëkryq - Mesatar</title>
+    <link rel="stylesheet" href="style.css">
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+        }
+
+        #crossword-grid {
+            border-collapse: collapse;
+            margin: 20px;
+        }
+
+        #crossword-grid td {
+            border: 1px solid #000;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 18px;
+            position: relative;
+        }
+
+        
+        #crossword-grid td[data-content="*"] {
+            background-color: #333;
+            color: #fff;
+            pointer-events: none; 
+        }
+
+
+        #crossword-grid td[data-content="number"] {
+            font-size: 12px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        #crossword-grid td[data-content="number"]::before {
+            content: attr(data-number);
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            font-size: 12px;
+            color: #000;
+        }
+
+
+        #crossword-grid td[data-content="number"][contenteditable="true"] {
+            background-color: #f0f0f0;
+        }
+
+
+        #crossword-grid td[contenteditable="true"] {
+            background-color: #f0f0f0;
+        }
+
+        #crossword-questions {
+            max-width: 300px;
+        }
+
+        #crossword-questions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #crossword-questions li {
+            cursor: pointer;
+            margin: 10px 0;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+
+        #crossword-questions li:hover {
+            color: #0056b3;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .clues-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+            gap: 40px;
+        }
+
+        .clues-column {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .clues-column h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .clues-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .clues-list li {
+            margin-bottom: 10px;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .clues-list li:hover {
+            background-color: #e6f3ff;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+        .grid-container {
+            flex: 0 0 auto;
+            padding-top: 48px; 
+        }
+
+        #crossword-grid {
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .clues-container {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            max-width: 800px;
+        }
+
+        .clues-column {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .clues-column h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .clues-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .clues-list li {
+            margin-bottom: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+
+        .clues-list li:hover {
+            background-color: #e6f3ff;
+        }
+
+        .clues-list li.active {
+            background-color: #e6f3ff;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1000px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .grid-container {
+                padding-top: 0; 
+            }
+
+            .clues-container {
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .clues-container {
+                flex-direction: column;
+            }
+
+            .clues-column {
+                width: 100%;
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .button-container button {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ku flet SHQIPJA</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="alphabet.html">Alfabeti</a></li>
+                <li><a href="fjaleperdite.html">Fjalë të Përditshme</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="veprimeditore.html">Fjalëkryq</a></li>
+                <li><a href="dialogu.html">Dialog</a></li>
+                <li><a href="zjedhimifjalve.html">Zgjedhimi i Foljeve</a></li>
+                <li><a href="lojefjalesh.html">Lojë Fjalësh</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <div class="grid-container">
+            <div class="spacer"></div>
+            <table id="crossword-grid">
+
+            </table>
+        </div>
+
+        <div class="clues-container">
+            <div class="clues-column">
+                <h3>Horizontalisht</h3>
+                <ul class="clues-list">
+                    <!-- Pyetjet Horizontalisht -->
+                    <li onclick="focusCell(0, 0, 'horizontal')" class="clue">1. Çfarë ka plot vrima, por mban akoma uji?</li>
+                    <li onclick="focusCell(2, 2, 'horizontal')" class="clue">5. Çfarë ka fjalë, por nuk flet kurrë?</li>
+                    <li onclick="focusCell(3, 9, 'horizontal')" class="clue">6. Çfarë ka 88 celsa, por nuk hap dot asnjë derë?</li>
+                    <li onclick="focusCell(4, 4, 'horizontal')" class="clue">7. Vjetërsira Por me vlerë Aty gjenden Kurdoherë.</li>
+                    <li onclick="focusCell(6, 9, 'horizontal')" class="clue">10. Ku mund te gjesh shtete, qytete, dyqane, rrugë por jo njerëz?</li>
+                    <li onclick="focusCell(8, 2, 'horizontal')" class="clue">12. E lehte për tu futur, vështirë per të dalë</li>
+                    <li onclick="focusCell(9, 8, 'horizontal')" class="clue">13. Kapak Mbrapsh</li>
+                    <li onclick="focusCell(12, 0, 'horizontal')" class="clue">15. Çfarë ka qaf, por jo kokë?</li>
+                    <li onclick="focusCell(12, 10, 'horizontal')" class="clue">16. Nuk kam duar, as këmbë, por ngjitme gjithmonë ne qiell</li>
+                </ul>
+            </div>
+            
+            <div class="clues-column">
+                <h3>Vertikalisht</h3>
+                <ul class="clues-list">
+                    <li onclick="focusCell(0, 0, 'vertical')" class="clue">1. Ka tre sy me ngjyra Nuk qan kurrë Në udhëkryq Qëndron si burrë.</li>
+                    <li onclick="focusCell(0, 4, 'vertical')" class="clue">2. Cila fjalë e fjalorit thuhet gabim?</li>
+                    <li onclick="focusCell(0, 10, 'vertical')" class="clue">3. Jam i gjate kur jam i ri, por i shkurtër ne pleqëri</li>
+                    <li onclick="focusCell(0, 13, 'vertical')" class="clue">4. Është një tempull Që lëshon dritë Ua shton fëmijëve Dituritë.</li>
+                    <li onclick="focusCell(2, 2, 'vertical')" class="clue">5. Herë ngadalë Herë me turr Hyjnë në det E s'dalin kurrë.</li>
+                    <li onclick="focusCell(5, 11, 'vertical')" class="clue">8. Çfarë mbush një dhomë por nuk flet kurrë?</li>
+                    <li onclick="focusCell(6, 6, 'vertical')" class="clue">9. Çfarë është aq e brishtë sa të thuash emrin e saj, e prish?</li>
+                    <li onclick="focusCell(7, 8, 'vertical')" class="clue">11. Nëse e kam, nuk e ndaj, nëse e ndaj, nuk e kam</li>
+                    <li onclick="focusCell(9, 10, 'vertical')" class="clue">14. Më blini për të ngrënë, por asnjëherë nuk më hani</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button onclick="checkAnswers()">Kontrollo Përgjigjet</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Uebfaqja e Mësimit të Gjuhës</p>
+    </footer>
+
+
+    <script src="crossword.js"></script>
+</body>
+</html>

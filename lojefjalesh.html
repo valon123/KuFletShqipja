@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja me Fjalë - Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+        }
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            flex: 1; /* This makes the main section grow to fill available space */
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        #quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        #answer-container {
+            margin-bottom: 20px;
+        }
+
+        #answer {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #050094cb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Loja me Fjalë</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="alphabet.html">Alfabeti</a></li>
+                <li><a href="fjaleperdite.html">Fjale te Perditshme</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="fjalekryq.html">Fjalekryq</a></li>
+                <li><a href="dialogu.html">Dialog</a></li>
+                <li><a href="zjedhimifjalve.html">Zgjedhimi i Foljeve</a></li>
+                <li><a href="veprimeditore.html">Veprime te Perditshme</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Quiz: Përktheni Këto Fjalë</h2>
+        <div id="quiz-container">
+            <div id="question-container">
+                <p id="question">Përktheni këtë: "Unë kam një mace."</p>
+            </div>
+
+            <div id="answer-container">
+                <input type="text" id="answer" placeholder="Shkruani përgjigjen tuaj" />
+                <button onclick="checkAnswer()">Kontrollo</button>
+            </div>
+
+            <p id="result"></p>
+
+            <button onclick="nextQuestion()">Pasues</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Loja me Fjalë. Të drejtat e rezervuara.</p>
+    </footer>
+
+    <script>
+        // List of questions and their correct answers
+        const quizData = [
+            {
+                question: "Unë kam një mace",
+                correctAnswer: "I have a cat"
+            },
+            {
+                question: "Ajo është mësuese",
+                correctAnswer: "She is a teacher"
+            },
+            {
+                question: "Ne po lexojmë një libër",
+                correctAnswer: "We are reading a book"
+            },
+            {
+                question: "Ai shkon në shkollë",
+                correctAnswer: "He goes to school"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const currentQuestion = quizData[currentQuestionIndex];
+            document.getElementById('question').textContent = `Përktheni këtë: "${currentQuestion.question}"`;
+            document.getElementById('answer').value = '';  // Clear previous answer
+            document.getElementById('result').textContent = '';  // Clear previous result
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer').value.trim();
+            const correctAnswer = quizData[currentQuestionIndex].correctAnswer;
+
+            const resultText = userAnswer.toLowerCase() === correctAnswer.toLowerCase()
+                ? "Përgjigja është e saktë! Bravo!"
+                : `Përgjigja është e gabuar. Përgjigja e saktë është: ${correctAnswer}`;
+
+            document.getElementById('result').textContent = resultText;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+            } else {
+                currentQuestionIndex = 0; // Reset to the first question
+            }
+            displayQuestion();
+        }
+
+        // Initialize the quiz
+        displayQuestion();
+    </script>
+</body>
+</html>

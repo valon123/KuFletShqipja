@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ku flet SHQIPJA - Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .quiz-question {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .quiz-option {
+            margin-bottom: 10px;
+        }
+        .quiz-option input {
+            margin-right: 10px;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .btn-submit {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ku flet SHQIPJA - Quiz</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="alphabet.html">Alfabeti</a></li>
+                <li><a href="fjaleperdite.html">Fjale te Perditshme</a></li>
+                <li><a href="veprimeditore.html">Quiz</a></li>
+                <li><a href="fjalekryq.html">Fjalekryq</a></li>
+                <li><a href="dialogu.html">Dialog</a></li>
+                <li><a href="zjedhimifjalve.html">Zgjedhimi i Foljeve</a></li>
+                <li><a href="lojefjalesh.html">Loje Fjalesh</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Quiz 1: Pjesët e trupit dhe emrat e tyre në shqip -->
+    <div class="quiz-container">
+        <h2>Pjesët e trupit dhe emrat e tyre në shqip</h2>
+        <form id="quizForm1">
+            <!-- Question 1 -->
+            <div class="quiz-question">
+                <p>1. Si quhet kjo pjesë e trupit? (Fotografi e duarve)</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="a"> a) Këmbë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="b"> b) Dore
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="c"> c) Kokë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="d"> d) Sy
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="quiz-question">
+                <p>2. Cili organ përdoret për të menduar?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="a"> a) Zemer
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="b"> b) Truri
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="c"> c) Stomak
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="d"> d) Veshi
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="quiz-question">
+                <p>3. Ku gjendet zemra?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="a"> a) Në kokë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="b"> b) Në gjoks
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="c"> c) Në abdomen
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="d"> d) Në krah
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="quiz-question">
+                <p>4. Cili organ përdoret për të dëgjuar?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="a"> a) Syri
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="b"> b) Veshi
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="c"> c) Goja
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="d"> d) Dora
+                </div>
+            </div>
+            <!-- Question 5 -->
+            <div class="quiz-question">
+                <p>5. Cili është emri i pjesës së trupit që përdorim për të ngrënë?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q5" value="a"> a) Gojë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q5" value="b"> b) Këmbë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q5" value="c"> c) Dorë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q5" value="d"> d) Truri
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn-submit" onclick="submitQuiz('quizForm1', 'result1')">Dërgo përgjigjet</button>
+        <div class="result" id="result1"></div>
+    </div>
+
+    <!-- Quiz 2: Koha dhe orari -->
+    <div class="quiz-container">
+        <h2>Koha dhe orari</h2>
+        <form id="quizForm2">
+            <!-- Question 1 -->
+            <div class="quiz-question">
+                <p>1. Si mund të pyesni për orën?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="a"> a) Si është ora?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="b"> b) A mund të më thoni kur orën?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="c"> c) Sa është ora?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="d"> d) Kur është ora?
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="quiz-question">
+                <p>2. Si mund të përgjigjeni nëse dikush pyet "Sa është ora?" dhe është 6:30?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="a"> a) Është ora gjashtë e tridhjetë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="b"> b) Është ora gjashtë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="c"> c) Është gjashtë dhe tre minuta
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="d"> d) Është ora katër
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="quiz-question">
+                <p>3. Cila nga këto është shprehja e saktë për orën 12:00?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="a"> a) Është ora dymbëdhjetë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="b"> b) Është ora një
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="c"> c) Është ora nëntë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="d"> d) Është ora pesë
+                </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="quiz-question">
+                <p>4. Çfarë do të thotë shprehja “Në mëngjes”?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="a"> a) Pasdite
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="b"> b) Mëngjes
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="c"> c) Mbrëmje
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q4" value="d"> d) Natë
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn-submit" onclick="submitQuiz('quizForm2', 'result2')">Dërgo përgjigjet</button>
+        <div class="result" id="result2"></div>
+    </div>
+
+    <!-- Quiz 3: Udhëtimet dhe transporti -->
+    <div class="quiz-container">
+        <h2>Udhëtimet dhe transporti</h2>
+        <form id="quizForm3">
+            <!-- Question 1 -->
+            <div class="quiz-question">
+                <p>1. Cili është mënyra më e zakonshme për të udhëtuar nga një qytet në qytetin tjetër në Shqipëri?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="a"> a) Me makinë
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="b"> b) Me autobus
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="c"> c) Me tren
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q1" value="d"> d) Me aeroplan
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="quiz-question">
+                <p>2. Si mund të pyesni për ndihmë në një stacion trenash?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="a"> a) Ku është stacioni i autobusëve?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="b"> b) Kur është ora e trenit?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="c"> c) Ku mund të blej biletën për trenin?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q2" value="d"> d) Ku është hotelet?
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="quiz-question">
+                <p>3. Si mund të pyesni për destinacionin e trenit?</p>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="a"> a) Ku shkon ky tren?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="b"> b) Cila është ora e trenit?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="c"> c) Pse është tren vonuar?
+                </div>
+                <div class="quiz-option">
+                    <input type="radio" name="q3" value="d"> d) Ku ndodhet stacioni tjetër?
+                </div>
+            </div>
+        </form>
+        <button type="button" class="btn-submit" onclick="submitQuiz('quizForm3', 'result3')">Dërgo përgjigjet</button>
+        <div class="result" id="result3"></div>
+    </div>
+
+    <script>
+        const answers1 = {
+            q1: 'b',
+            q2: 'b',
+            q3: 'b',
+            q4: 'b',
+            q5: 'a'
+        };
+
+        const answers2 = {
+            q1: 'c',
+            q2: 'a',
+            q3: 'a',
+            q4: 'b'
+        };
+
+        const answers3 = {
+            q1: 'b',
+            q2: 'c',
+            q3: 'a'
+        };
+
+        function submitQuiz(formId, resultId) {
+            let answers;
+            if (formId === 'quizForm1') answers = answers1;
+            if (formId === 'quizForm2') answers = answers2;
+            if (formId === 'quizForm3') answers = answers3;
+
+            const form = document.getElementById(formId);
+            let score = 0;
+            
+            // Check answers for the selected quiz
+            for (let q in answers) {
+                const userAnswer = form.querySelector(`input[name="${q}"]:checked`);
+                if (userAnswer && userAnswer.value === answers[q]) {
+                    score++;
+                }
+            }
+
+            // Display result for the selected quiz
+            const result = document.getElementById(resultId);
+            result.textContent = `Ju keni marrë ${score} nga ${Object.keys(answers).length} pikë!`;
+
+            // Color-coding the result
+            if (score === Object.keys(answers).length) {
+                result.style.color = 'green';
+            } else if (score >= Object.keys(answers).length / 2) {
+                result.style.color = 'orange';
+            } else {
+                result.style.color = 'red';
+            }
+        }
+    </script>
+</body>
+</html>

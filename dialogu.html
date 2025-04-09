@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfabeti</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic styling for the dialogue container */
+        #dialogue-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Styling for the dialogue lines */
+        .line {
+            display: none;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 80%;
+            text-align: left;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Button styling */
+        .btn {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Dropdown style */
+        .dropdown {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .dropdown select {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Ku flet SHQIPJA</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="alphabet.html">Alfabeti</a></li>
+                <li><a href="zjedhimifjalve.html">Zgjedhimi i Foljeve</a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="fjalekryq.html">Fjalekryq</a></li>
+                <li><a href="dialogu.html">Dialog</a></li>
+                <li><a href="veprimeditore.html">Veprime te Perditshme</a></li>
+                <li><a href="lojefjalesh.html">Loje Fjalesh</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Dropdown to choose dialogue -->
+    <div class="dropdown">
+        <label for="dialogue-select">Zgjidh një dialog:</label>
+        <select id="dialogue-select">
+            <option value="1">Njohja e pare</option>
+            <option value="2">Ne dyqan</option>
+            <option value="3">Flora dhe Danieli</option>
+        </select>
+        <button class="btn" onclick="startDialogue()">Filloni Dialogun</button>
+    </div>
+
+    <!-- Dialogue container -->
+    <div id="dialogue-container">
+        <!-- Remaining dialogue lines, all aligned left -->
+        <div class="line" id="line-1"></div>
+        <div class="line" id="line-2"></div>
+        <div class="line" id="line-3"></div>
+        <div class="line" id="line-4"></div>
+        <div class="line" id="line-5"></div>
+        <div class="line" id="line-6"></div>
+        <div class="line" id="line-7"></div>
+        <div class="line" id="line-8"></div>
+        <div class="line" id="line-9"></div>
+        <div class="line" id="line-10"></div>
+        <div class="line" id="line-11"></div>
+        <div class="line" id="line-12"></div>
+        <div class="line" id="line-13"></div>
+        <div class="line" id="line-14"></div>
+        <div class="line" id="line-15"></div>
+        <div class="line" id="line-16"></div>
+        <div class="line" id="line-17"></div>
+        <div class="line" id="line-18"></div>
+        <div class="line" id="line-19"></div>
+        <div class="line" id="line-20"></div>
+
+        <button class="btn" onclick="showNextLine()">Lexoni më shumë...</button>
+    </div>
+
+    <script>
+        let currentLine = 0;
+        let selectedDialogue = [];
+
+        // Dialogue data
+        const dialogues = {
+            1: [
+                "Ana: Pershendetje! Me fal qe te nderpreva,por je… I ri ketu , apo jo? (Hello! Sorry to interrupt you, but you are... New here, right?)",
+                "Ardi: Po, Pershendetje! Sapo u transferova dje. Une jam Ardi po ti? (Yes, Hello! I just moved yesterday. I'm Ardi, what about you?)",
+                "Ana: Kenaqesi Ardi! Une quhem Ana , Sa vjec je nese nuk te shqeteson pyetja? (Pleasure Ardi! My name is Ana, how old are you if you don't mind the question?)",
+                "Ardi: Aspak! Jam 23 vjec. Ti? (Not at all! I am 23 years old. You?)",
+                "Ana: Edhe Une 23 vjec jam, nga je me origjin? (I am also 23 years old, where are you from?)",
+                "Ardi: Nga Tirana , por me pelqen shume ky qyteti. Ti? (From Tirana, but I really like this city. you?)",
+                "Ana: Une jam nga Lezha. Tirana eshte vend I bukur apo jo? (I'm from Lezha. Tirana is a beautiful place, isn't it?)",
+                "Ardi: Absolutisht! Ndoshta mund te takohemu nje dite per kafe? (Absolutely! Maybe we can meet one day for coffee?)",
+                "Ana: Pse jo? Me shkruaj kur te duash. (Why not? Text me when you want.)"
+            ],
+            2: [
+                "Klienti: Pershendetje! A Keni nje bluz ngjyr te zeze masa M? (Hello! Do you have a black blouse, size M?)",
+                "Shitesja: Pershendetje! Po sigurisht. Ja ku eshte nje model qe mund t’ju pelqej, (Hello! Yes, of course. Here's a pattern you might like)",
+                "Klienti: Sa kushton? (How much does it cost?)",
+                "Shitesja: 25 euro. Deshironi ta provoni? (25 euros. Want to try it?)",
+                "Klienti: Po ku ndodhet dhoma e proves? (Where is the test room located?)",
+                "Shitesja: Aty djathtas, pran pasqyres (Right there, next to the mirror)",
+                "Klienti: Faleminderit! (Thank you!)"
+            ],
+            3: [
+                "Flora: A e di se cfare ndodhi sot? (Do you know what happened today?)",
+                "Danieli: Cfare ndodhi? Mos me thuaj qe prap ke harruar celesat! (What happened? Don't tell me you forgot the keys again!)",
+                "Flora: Jo jo, eshte me keq ..! E lash canten ne autobuz! (No no, it's worse..! I left the bag on the bus!)",
+                "Danieli: Canten?! Oh jo... po brenda kishte ndonje gje te rendesishme? (The bag?! Oh no... was there anything important inside?)",
+                "Flora: Po sigurisht! Kuleten telefonin ... dhe librin tim te preferuar! (Yes, of course! Phone, wallet ... and my favorite book!)",
+                "Danieli: Librin? Jooo ate me kapak te kuq! (The book? Oh, the one with the red cap!)"
+            ]
+        };
+
+        // Start the selected dialogue
+        function startDialogue() {
+            const selected = document.getElementById('dialogue-select').value;
+            selectedDialogue = dialogues[selected];
+            currentLine = 0;
+            document.querySelector('.btn').disabled = false;
+            document.querySelector('.btn').innerText = "Lexoni më shumë...";
+            // Hide all lines
+            for (let i = 1; i <= 20; i++) {
+                document.getElementById('line-' + i).style.display = 'none';
+            }
+            // Show the first line of the selected dialogue
+            showNextLine();
+        }
+
+        // Show next line in dialogue
+        function showNextLine() {
+            if (currentLine < selectedDialogue.length) {
+                const line = selectedDialogue[currentLine];
+                const lineId = 'line-' + (currentLine + 1);
+                document.getElementById(lineId).textContent = line;
+                document.getElementById(lineId).style.display = 'block';
+                currentLine++;
+            } else {
+                // When finished, change button text and scroll to top
+                document.querySelector('.btn').innerText = "All done";
+                setTimeout(() => {
+                    window.scrollTo(0, 0); // Scroll to the top
+                }, 300); // Scroll delay for smooth experience
+            }
+        }
+    </script>
+</body>
+</html>
